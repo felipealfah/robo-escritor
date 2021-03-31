@@ -1,5 +1,6 @@
 const inserirdados = require('./robots/input.js')
-const pesquisar = require('./robots/state.js')
+const pesquisar = require('./robots/pesquisa.js')
+
   
   async function start() {
     try {
@@ -12,4 +13,4 @@ const pesquisar = require('./robots/state.js')
   };
   }
   
-  start();
+  start()
