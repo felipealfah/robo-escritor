@@ -1,25 +1,31 @@
+const readline = require('readline-sync')
 const fs = require('fs')
 const contentFilePath = "./artigos/content.json"
-const state = require('./state');
+const axios = require('axios');
 
 
 function robot() {
-  const content = {}
-  state.ler(content)
 
-  console.log(content);
+  const TermoDeBusca = {}
+  
+  TermoDeBusca.searchTerm = askAndReturnSearchTerm()
 
-  const axios = require('axios');
+  function askAndReturnSearchTerm() {
+    return readline.question('Digite a Palavra-chave: ')
+  }
 
-// set up the request parameters
+  console.log(TermoDeBusca);
+
+  
+//set up the request parameters
 const params = {
   api_key: "3843F994DECA4450BA53C298286397C0",
-  q: "emprendimiento femenino",
+  q: TermoDeBusca.searchTerm,
   output: "json",
-  hl: "es-419",
+  hl: "es",
   include_answer_box: "true",
   flatten_results: "false",
-  num: "10"
+  num: "15"
 }
 
 // make the http GET request to Scale SERP
@@ -36,5 +42,7 @@ axios.get('https://api.scaleserp.com/search', { params })
 console.log("Salvo no Json com Sucesso! ");
 });   
 }
-,)}
+,)
+}
+
 module.exports = robot()
